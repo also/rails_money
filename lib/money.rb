@@ -114,9 +114,7 @@ class Money
   def self.get_value(value)
     value = value.gsub(/[^0-9.]/,'').to_f if value.kind_of?(String) 
     value = 0 if value.nil?
-    unless value.kind_of?(Integer) or value.kind_of?(Float)
-      raise MoneyError, "Cannot create money from cents with #{value.class}. Fixnum required." 
-    end
+    value = value.to_f unless value.kind_of?(Integer) or value.kind_of?(Float)
     value
   end
 
